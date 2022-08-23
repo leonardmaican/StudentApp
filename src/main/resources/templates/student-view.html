@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student details</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+<div th:insert="navbar"></div>
+<div class="container-fluid">
+
+    <div class="btn-group" style="float:right">
+        <form th:action="@{/studentApp/{id}/edit}">
+            <input type="hidden" name="id" th:value="${student.id}"/>
+            <input type="submit" value="Edit" class="btn btn-warning"/>
+        </form>
+        <form th:action="@{delete}" method="post">
+            <input type="hidden" name="id" th:value="${student.id}"/>
+            <input type="submit" value="Delete" class="btn btn-danger"/>
+        </form>
+    </div>
+</div>
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+    <th>First Name</th> <th>Last Name</th><th>Room Number</th><th>Access Card Number</th><th>Contract Number</th>
+    </tr>
+    </thead>
+
+    <tr>
+
+        <td th:text="${student.firstName}"></td>
+        <td th:text="${student.lastName}"></td>
+        <td th:text="${student.roomNumber}"></td>
+        <td th:text="${student.accessCardNumber}"></td>
+        <td th:text="${student.contractNumber}"></td>
+
+    </tr>
+</table>
+
+</body>
+</html>

@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th= "http://www.thymeleaf.org" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
 <body>
-something
+<div th:insert="navbar"></div>
+<div class="container">
+    <div th:if="${not studentList.empty}">
+        <h1>Students in the database:</h1>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th>Action button</th><th>First Name</th> <th>Last Name</th><th>Room Number</th><th>Access Card Number</th><th>Contract Number</th>
+            </tr>
+            </thead>
+
+            <tr th:each="student: ${studentList}">
+                <td th:href="${student.id}"> <a th:href="@{'/studentApp/'+${student.id}}" class="btn btn-primary">Actions</a></td>
+                <td th:text="${student.firstName}"></td>
+                <td th:text="${student.lastName}"></td>
+                <td th:text="${student.roomNumber}"></td>
+                <td th:text="${student.accessCardNumber}"></td>
+                <td th:text="${student.contractNumber}"></td>
+
+            </tr>
+        </table>
+    </div>
+
+</div>
 </body>
 </html>
